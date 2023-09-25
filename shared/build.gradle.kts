@@ -7,6 +7,19 @@ plugins {
 kotlin {
     androidTarget()
 
+
+    jvm("desktop") {
+        compilations.all {
+            kotlinOptions {
+                kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+            }
+        }
+    }
+
+    js(IR) {
+        browser()
+    }
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -24,8 +37,19 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation(compose.animation)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+
+                api(libs.koin)
+                api(libs.koin.compose)
+
+                api("moe.tlaster:precompose:1.5.1")
+                api("moe.tlaster:precompose-viewmodel:1.5.1")
+                api("moe.tlaster:precompose-koin:1.5.1")
+
+
             }
         }
         val androidMain by getting {
@@ -66,3 +90,38 @@ android {
         jvmToolchain(17)
     }
 }
+
+
+val resourcesDir = "$buildDir/resources/"
+
+val skikoWasm by configurations.creating
+
+dependencies {
+    skikoWasm(libs.skiko.js)
+}
+
+val unzipTask = tasks.register("unzipWasm", Copy::class) {
+    destinationDir = file(resourcesDir)
+    from(skikoWasm.map { zipTree(it) })
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile>().configureEach {
+    dependsOn(unzipTask)
+}
+
+
+compose.experimental {
+    web.application {}
+}
+
+tasks.withType<ProcessResources> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+afterEvaluate {
+    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+        versions.webpackCli.version = rootProject.extra.get("webpackCliVersion") as String
+        nodeVersion = rootProject.extra.get("nodeVersion") as String
+    }
+}
+

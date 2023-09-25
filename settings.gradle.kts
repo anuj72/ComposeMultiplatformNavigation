@@ -1,7 +1,9 @@
-rootProject.name = "MyApplication"
+rootProject.name = "ComposeApp"
 
 include(":androidApp")
 include(":shared")
+include(":desktop")
+include(":js")
 
 pluginManagement {
     repositories {
@@ -27,9 +29,7 @@ pluginManagement {
     }
 }
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version("0.4.0")
-}
+
 
 dependencyResolutionManagement {
     repositories {
