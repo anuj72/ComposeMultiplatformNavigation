@@ -11,9 +11,19 @@ You can use this template to start developing your own [Compose Multiplatform](h
 Follow our tutorial below to get your first Compose Multiplatform app up and running.
 The result will be a [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html) project that uses the Compose Multiplatform UI framework.
 
-![](readme_images/banner.png)
+Android
+![](readme_images/1.png)
 
-If you want to create an application targeting desktop platforms – Windows, macOS, or Linux –
+Desktop
+![](readme_images/2.png)
+
+IOS
+![](readme_images/3.png)
+
+Web
+![](readme_images/4.png)
+
+This Template Include All platform (Android/IOS/Desktop/Web) –
 use the [Compose Multiplatform desktop application template](https://github.com/JetBrains/compose-multiplatform-desktop-template#readme).
 
 ## Set up the environment
