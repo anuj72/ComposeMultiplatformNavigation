@@ -45,3 +45,7 @@ To work with this template, you need the following:
 Before you start, use the [KDoctor](https://github.com/Kotlin/kdoctor) tool to ensure that your development environment is configured correctly:
 
  advanced Compose Multiplatform example projects](https://github.com/JetBrains/compose-multiplatform/blob/master/examples/README.md)
+ 
+
+### Navigation in KMP
+![](readme_images/1.mov)
