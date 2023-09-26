@@ -48,4 +48,4 @@ Before you start, use the [KDoctor](https://github.com/Kotlin/kdoctor) tool to e
  
 
 ### Navigation in KMP
-![](readme_images/1.mov)
+![](readme_images/m1.mp4)
